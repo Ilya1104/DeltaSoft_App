@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="DeltaSoftApp.MainPage">
+
+    <ContentPage.Resources>
+        <Style x:Key="headerLabel" TargetType="Label">
+            <Setter Property="Margin" Value="0, 0" />
+            <Setter Property="FontSize" Value="25" />
+            <Setter Property="TextColor" Value="DeepSkyBlue" />
+            <Setter Property="FontFamily" Value="Comfortaa-Bold.ttf#" />
+        </Style>
+        <Style TargetType="Image">
+            <Setter Property="FlexLayout.Order" Value="1" />
+        </Style>
+        <Style TargetType="Frame">
+            <Setter Property="FlexLayout.Order" Value="-1" />
+            <Setter Property="FlexLayout.AlignSelf" Value="Center" />
+        </Style>
+       
+        <Style TargetType="Label">
+            <Setter Property="FontFamily" Value="Comfortaa-Light.ttf#" />
+            <Setter Property="FontSize" Value="20" />
+        </Style>
+    </ContentPage.Resources>
+    <StackLayout Background="skyblue" Orientation="Vertical" >
+        <StackLayout HeightRequest="80" Background="darkblue">
+            <Label x:Name="appName" Text="DeltaSoft App" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" TextColor="white" FontSize="25" FontAttributes="Italic" FontFamily="ShadowsIntoLight"/>
+        </StackLayout>      
+        <StackLayout x:Name="drownView" IsVisible="false">          
+            <CarouselView x:Name="newsList" ItemsSource="{Binding}" PeekAreaInsets="100" >
+                <CarouselView.ItemsLayout>
+                    <LinearItemsLayout Orientation="Vertical"/>
+                </CarouselView.ItemsLayout>
+                <CarouselView.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout>
+                            <Frame HasShadow="True"
+                                       BorderColor="DarkGray"
+                                       CornerRadius="10"
+                                       Margin="20"
+                                       HeightRequest="400"
+                                       HorizontalOptions="CenterAndExpand"
+                                       VerticalOptions="Center">
+                                <StackLayout>
+                                    <Image Source="{Binding Preview}" Aspect="AspectFill" HeightRequest="200" WidthRequest="400" HorizontalOptions="CenterAndExpand"/>
+                                    <Label Text="{Binding Theme}" Style="{StaticResource headerLabel}"/>
+                                    <Label Text="{Binding Description}" TextColor="DeepSkyBlue"/>
+                                </StackLayout>
+                            </Frame>
+                        </StackLayout>
+                    </DataTemplate>
+                </CarouselView.ItemTemplate>
+            </CarouselView>
+        </StackLayout>
+        <StackLayout x:Name="viewWeb" IsVisible="false" Background="red">
+            <WebView x:Name="vw" WidthRequest="1000" HeightRequest="1000"/>
+        </StackLayout>
+    </StackLayout>    
+</ContentPage>
